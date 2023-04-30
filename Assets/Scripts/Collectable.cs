@@ -1,19 +1,12 @@
 using System;
 using UnityEngine;
 using System.Collections;
+using UnityEditor;
 
+[RequireComponent(typeof(Item))]
 public class Collectable : MonoBehaviour
 {
-   [SerializeField] private SpriteRenderer icon;
-
    public Item item;
-
-   public void Awake()
-   {
-      Debug.Log("I am here");
-      icon.sprite = item.image;
-      Debug.Log(item.stackable);
-   }
 
    private void OnTriggerEnter2D(Collider2D other)
    {

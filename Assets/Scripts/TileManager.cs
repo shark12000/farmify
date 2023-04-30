@@ -4,12 +4,13 @@ using UnityEngine.Tilemaps;
 
 public class TileManager : MonoBehaviour
 {
-    [SerializeField] private Tilemap interactableMap;
+    [SerializeField] public Tilemap interactableMap;
     [SerializeField] private Tile hiddenInteractableTile;
     [SerializeField] private Tile interactedTile;
     void Start()
     {
-        foreach (var position in interactableMap.cellBounds.allPositionsWithin)
+        foreach (var position in interactableMap
+                     .cellBounds.allPositionsWithin)
         {
             TileBase tile = interactableMap.GetTile(position);
 
@@ -38,5 +39,17 @@ public class TileManager : MonoBehaviour
     public void SetInteracted(Vector3Int position)
     {
         interactableMap.SetTile(position, interactedTile);
+    }
+
+    public bool isInteracted(Vector3Int position)
+    {
+        TileBase tile = interactableMap.GetTile(position);
+
+        if (tile.name == "Summer_Plowed")
+        {
+            return true;
+        }
+
+        return false;
     }
 }

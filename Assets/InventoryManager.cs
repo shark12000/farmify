@@ -53,7 +53,7 @@ public class InventoryManager : MonoBehaviour
          if (itemInSlot != null && 
              itemInSlot.item == item && 
              itemInSlot.count < maxStackedItems && 
-             itemInSlot.item.stackable == true)
+             itemInSlot.item.data.stackable == true)
          {
             itemInSlot.count++;
             itemInSlot.RefreshCount();
@@ -74,6 +74,14 @@ public class InventoryManager : MonoBehaviour
       }
 
       return false;
+   }
+
+   public bool CheckIfItemInSlot()
+   {
+      InventorySlot slot = inventorySlots[selectedSlot];
+      InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
+
+      return itemInSlot;
    }
 
    public Item GetSelectedItem(bool use)

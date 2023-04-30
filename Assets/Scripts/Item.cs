@@ -1,28 +1,16 @@
+using System;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
-[CreateAssetMenu(menuName = "Scriptable object/Item")]
-
-public class Item : ScriptableObject
+public class Item : MonoBehaviour
 {
-    [Header("Only gameplay")]
-    public ItemType type;
-    public ActionType actionType;
-    
-    [Header("Only UI")]
-    public bool stackable = true;
+    public ItemData data;
 
-    [Header("Both")]
-    public Sprite image;
+    [HideInInspector] public Rigidbody2D rb2d;
+
+    private void Awake()
+    {
+        rb2d = GetComponent<Rigidbody2D>();
+    }
+
+ 
 }
-
-public enum ItemType
-    {
-        Carrot
-    }
-
-    public enum ActionType
-    {
-        Plant, 
-        Collect
-    }
