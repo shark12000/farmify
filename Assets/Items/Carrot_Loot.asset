@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37240412f6100b84faf66dd854fe5aa9, type: 3}
+  m_Name: Carrot_Loot
+  m_EditorClassIdentifier: 
+  title: Carrot__Loot
+  icon: {fileID: -606044414, guid: 18e6ec48cab136d41b38760bbb498ccc, type: 3}
+  stackable: 1
+  price: 200

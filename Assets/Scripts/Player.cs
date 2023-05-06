@@ -1,13 +1,17 @@
+using System;
+using Crops;
+using Rubbish;
+using ScriptableObjects;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
 
 public class Player : MonoBehaviour
 {
- 
+
    private void Update()
    {
-
       if (Input.GetKeyDown(KeyCode.Space))
       {
          Vector3Int position = new Vector3Int((int) transform.position.x, 
@@ -15,7 +19,6 @@ public class Player : MonoBehaviour
 
          if (GameManager.instance.tileManager.IsInteractable(position))
          {
-            Debug.Log("Tile is interactable");
             GameManager.instance.tileManager.SetInteracted(position);
          }
       }
@@ -24,20 +27,26 @@ public class Player : MonoBehaviour
       {
          Vector3Int position = new Vector3Int((int) transform.position.x, 
             (int) transform.position.y, 0);
-         
-         Vector3Int cellPosition = GameManager.instance.tileManager.interactableMap.WorldToCell(position);
-         
-         Item item = InventoryManager.instance.GetSelectedItem(true);
-         if (item != null && item.data.type == Type.Seed && GameManager.instance.tileManager.isInteracted(position))
+
+         var item = InventoryManager.instance.GetSelectedItem();
+
+         if (item != null && GameManager.instance.tileManager.IsInteracted(position))
          {
-            Debug.Log("Is interacted: " + GameManager.instance.tileManager.isInteracted(position));
-            Vector3 spawnPosition = GameManager.instance.tileManager.interactableMap.CellToWorld(cellPosition);
-            GameObject seed = Instantiate(item.gameObject, spawnPosition, Quaternion.identity);
-            GameManager.instance.tileManager.interactableMap.SetTileFlags(cellPosition, TileFlags.None);
-            GameManager.instance.tileManager.interactableMap.SetTile(cellPosition, null);
-            GameManager.instance.tileManager.interactableMap.RefreshTile(cellPosition);
-            seed.transform.parent = GameManager.instance.tileManager.interactableMap.transform;
-            Debug.Log("Spawned");
+            Vector3 tilePosition = GameManager.instance.tileManager.ConvertToTilemapPosition(position);
+            
+            Tile tile = ScriptableObject.CreateInstance<Tile>();
+            tile.sprite = item.icon;
+            Seed seed = (Seed) item;
+            bool canPlant = CropManager.instance.PlantCrop(Vector3Int.RoundToInt(tilePosition), seed);
+            if (canPlant)
+            {
+               InventoryManager.instance.RemoveItem();
+            }
+            else
+            {
+               Debug.Log("Item cannot be planted here");
+            }
+             
          }
       }
       
@@ -45,7 +54,16 @@ public class Player : MonoBehaviour
       {
         Debug.Log(InventoryManager.instance.CheckIfItemInSlot());
       }
+
+      if (Input.GetKeyDown(KeyCode.Q))
+      {
+         Vector3Int position = new Vector3Int((int) transform.position.x, 
+            (int) transform.position.y, 0);
+         
+         Vector3 tilePosition = GameManager.instance.tileManager.ConvertToTilemapPosition(position);
+
+
+         CropManager.instance.HarvestCrop(Vector3Int.RoundToInt(tilePosition));
+      }
    }
-   
-   
 }
