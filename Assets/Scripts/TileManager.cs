@@ -5,7 +5,6 @@ using UnityEngine.Tilemaps;
 public class TileManager : MonoBehaviour
 {
     [SerializeField] public Tilemap interactableMap;
-    [SerializeField] public Tilemap tempMap;
     [SerializeField] private Tile hiddenInteractableTile;
     [SerializeField] private Tile interactedTile;
     void Start()
@@ -52,11 +51,6 @@ public class TileManager : MonoBehaviour
         }
 
         return false;
-    }
-
-    public void SetTempMap(Vector3Int position, Tile tile)
-    {
-        tempMap.SetTile(position, tile);
     }
 
     public Vector3 ConvertToTilemapPosition(Vector3Int position)
