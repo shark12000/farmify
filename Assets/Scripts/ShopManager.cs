@@ -90,10 +90,16 @@ public class ShopManager : MonoBehaviour {
     
     public void OnEndDragShopItem()
     {
+        HandleShopItem();
+        HandleInventoryItem();
+    }
+
+    private void HandleShopItem()
+    {
         if (draggedShopItem != null)
         {
             Slot targetSlot = FindInventorySlotUnderMouse();
-            
+
             if (targetSlot != null && targetSlot.IsEmpty())
             {
                 BuyItem(draggedShopItem, targetSlot, false);
@@ -108,35 +114,16 @@ public class ShopManager : MonoBehaviour {
             }
         }
         draggedShopItem = null;
-
-        if (draggedInventoryItem != null)
-        {
-            Slot targetSlot = FindInventorySlotUnderMouse();
-
-            if (targetSlot != null && (targetSlot.IsEmpty() || draggedInventoryItem.item.stackable))
-            {
-                if (targetSlot.IsEmpty())
-                {
-                    InventoryManager.instance.SpawnNewInventoryItem(draggedInventoryItem, targetSlot);
-                }
-                else
-                {
-                    Debug.Log("count" + draggedInventoryItem.count);
-                    draggedInventoryItem.count++;
-                }
-
-                InventoryManager.instance.RemoveItemAfterDragging(draggedInventoryItem);
-            }
-            else if (IsShopObjectUnderMouse())
-            {
-                Debug.Log("I am here");
-                SellItem(draggedInventoryItem);
-            }
-        }
     }
 
-   
-
+    private void HandleInventoryItem()
+    {
+        if (draggedInventoryItem == null) return;
+        if (!IsShopObjectUnderMouse()) return;
+        Debug.Log("I am here");
+        SellItem(draggedInventoryItem);
+    }
+    
     private Slot FindInventorySlotUnderMouse()
     {
         PointerEventData eventData = new PointerEventData(EventSystem.current);

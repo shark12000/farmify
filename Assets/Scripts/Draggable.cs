@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -5,14 +6,12 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 {
     private Vector3 _startPosition;
     private Transform _startParent;
-    private bool _isDragged;
 
     public void OnBeginDrag(PointerEventData eventData)
     {
         _startPosition = transform.position;
         _startParent = transform.parent;
         transform.SetParent(transform.root);
-        _isDragged = true;
         ShopManager.instance.OnBeginDrag(this);
     }
 
@@ -21,14 +20,46 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         transform.position = Input.mousePosition;
     }
 
-  public void OnEndDrag(PointerEventData eventData)
+    public void OnEndDrag(PointerEventData eventData)
     {
-        if (!_isDragged) return;
-       transform.position = _startPosition;
+        transform.position = _startPosition;
         transform.SetParent(_startParent);
-       _isDragged = false;
-     ShopManager.instance.OnEndDragShopItem();
-}
+
+        Slot slot = FindInventorySlotUnderMouse();
+        if (slot != null)
+        {
+            if (this.GetComponent<ShopItem>() != null)
+            {
+                ShopManager.instance.OnEndDragShopItem();
+            }
+            else if (this.GetComponent<InventoryItem>() != null)
+            {
+                transform.SetParent(slot.transform, false);
+            }
+        }
+        else
+        {
+            ShopManager.instance.OnEndDragShopItem();
+        }
+    }
     
-    
+    private Slot FindInventorySlotUnderMouse()
+    {
+        PointerEventData eventData = new PointerEventData(EventSystem.current);
+        eventData.position = Input.mousePosition;
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventData, results);
+
+        foreach (RaycastResult result in results)
+        {
+            Slot slot = result.gameObject.GetComponent<Slot>();
+            if (slot != null && result.gameObject.CompareTag(@"Inventory"))
+            {
+                Debug.Log("SLOTTT" + slot);
+                return slot;
+            }
+        }
+
+        return null;
+    }
 }

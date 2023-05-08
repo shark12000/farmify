@@ -62,6 +62,7 @@ namespace DataPersistence
                 dataPersistenceObj.SaveData(ref _gameData);
             }
             
+            Debug.Log("game was saved");
             _dataHandler.Save(_gameData);
         }
 

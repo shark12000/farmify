@@ -3,11 +3,11 @@ using DataPersistence.Data;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MoneyManager : MonoBehaviour, IDataPersistence
+public class MoneyManager : MonoBehaviour
 {
     public Text text;
     public static MoneyManager instance;
-    private int coins = 0;
+    private int coins = 100;
     private void Awake()
     {
         if (instance == null)
@@ -45,15 +45,5 @@ public class MoneyManager : MonoBehaviour, IDataPersistence
     public int GetCoins()
     {
         return coins;
-    }
-
-    public void LoadData(GameData data)
-    {
-        coins = data.coins;
-    }
-
-    public void SaveData(ref GameData data)
-    {
-        data.coins = coins;
     }
 }

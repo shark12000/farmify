@@ -1,7 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using DataPersistence;
-using DataPersistence.Data;
 using Rubbish;
 using ScriptableObjects;
 using UnityEngine;
@@ -45,8 +43,8 @@ public class CropManager : MonoBehaviour
 
                     if (crop.timeRemaining <= 0f)
                     {
-                        tempTilemap.SetTile(localPosition, crop.type.tiles[^1]);
-                        break;
+                        //tempTilemap.SetTile(localPosition, crop.type.tiles[^1]);
+                        //break;
                     }
                     else
                     {

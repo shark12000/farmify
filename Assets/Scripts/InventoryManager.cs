@@ -1,7 +1,4 @@
-using DataPersistence;
-using DataPersistence.Data;
 using ScriptableObjects;
-using UnityEditor;
 using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
