@@ -1,4 +1,3 @@
-using Rubbish;
 using UnityEngine;
 
 public class LootManager : MonoBehaviour
@@ -36,7 +35,7 @@ public class LootManager : MonoBehaviour
 
                 lootItem.type = typeOfSeed;
                 lootItem.count = roll;
-
+                Debug.Log(lootItem.type + " dropped");
                 return true;
             }
         }

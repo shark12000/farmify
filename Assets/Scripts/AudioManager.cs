@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,7 +8,6 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        // Add listener to the slider value change event
         volumeSlider.onValueChanged.AddListener(ChangeVolume);
         audioSource = GetComponent<AudioSource>();
         PlayMusic();

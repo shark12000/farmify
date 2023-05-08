@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbd4e66bb3af4247abb3b89a33ca1e9c, type: 3}
+  m_Name: Cabbage_Seed
+  m_EditorClassIdentifier: 
+  title: Cabbage
+  icon: {fileID: -2055573180, guid: 067340c6cfbaedb488530697b400fe6f, type: 3}
+  stackable: 1
+  price: 300
+  tiles:
+  - {fileID: 11400000, guid: 604f0924c8214cd42bb97245bc270795, type: 2}
+  - {fileID: 11400000, guid: ac3deed66cf42674a9485aa36bd1e077, type: 2}
+  - {fileID: 11400000, guid: 83f473b95b955ba4c968fef8dcc88d22, type: 2}
+  - {fileID: 11400000, guid: 0fbc42f4121f5434992023d2423bdca1, type: 2}
+  - {fileID: 11400000, guid: b9f0ca01100a1ec48a88733364364e49, type: 2}
+  - {fileID: 11400000, guid: 2fdf7395bcfdb0a4c9248b53fcbe12bb, type: 2}
+  timeToHarvest: 2000
+  numGrowthStages: 5
+  Seedtype: 4

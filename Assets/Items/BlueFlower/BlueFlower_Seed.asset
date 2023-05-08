@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbd4e66bb3af4247abb3b89a33ca1e9c, type: 3}
+  m_Name: BlueFlower_Seed
+  m_EditorClassIdentifier: 
+  title: BlueFlower
+  icon: {fileID: -2055573180, guid: 067340c6cfbaedb488530697b400fe6f, type: 3}
+  stackable: 1
+  price: 400
+  tiles:
+  - {fileID: 11400000, guid: e8e55b6cee51e3c47b7480e00c10fb1a, type: 2}
+  - {fileID: 11400000, guid: 0efd5fd300557ff4f9a63f488de229d3, type: 2}
+  - {fileID: 11400000, guid: 12a78d32ce7c02a478e2aad34ec4ce51, type: 2}
+  - {fileID: 11400000, guid: f6c8e57d395272340a6eea4f8fa0416a, type: 2}
+  - {fileID: 11400000, guid: 87f72958432fbed4eb8c99f8c9e9f598, type: 2}
+  timeToHarvest: 3000
+  numGrowthStages: 5
+  Seedtype: 1

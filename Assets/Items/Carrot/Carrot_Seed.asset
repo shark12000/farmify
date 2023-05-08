@@ -23,6 +23,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 071a053b46f37444b85d9cef5cac6d06, type: 2}
   - {fileID: 11400000, guid: c7e8c0d454e7ca64d88ef4740885d23f, type: 2}
   - {fileID: 11400000, guid: cf0450ecd1ff51c409670417efd8e587, type: 2}
-  timeToHarvest: 2000
+  timeToHarvest: 70
   numGrowthStages: 6
   Seedtype: 0

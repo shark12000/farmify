@@ -1,7 +1,14 @@
-namespace Rubbish
+public enum TypeOfSeed
 {
-    public enum TypeOfSeed
-    {
-        Carrot,
-    }
+    Carrot,
+    BlueFlower,
+    RedFlower,
+    YellowFlower,
+    Cabbage,
+    Pumpkin,
+    Tomato,
+    Potato,
+    Corn,
+    Strawberry,
+    Watermelon
 }

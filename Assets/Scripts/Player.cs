@@ -57,8 +57,7 @@ public class Player : MonoBehaviour
             (int) transform.position.y, 0);
          
          Vector3 tilePosition = GameManager.instance.tileManager.ConvertToTilemapPosition(position);
-
-
+         
          CropManager.instance.HarvestCrop(Vector3Int.RoundToInt(tilePosition));
       }
    }

@@ -43,34 +43,40 @@ public class InventoryManager : MonoBehaviour
       inventorySlots[newValue].Select();
       selectedSlot = newValue;
    }
-   public bool AddItem(Item item)
-   {
 
+   public bool AddLootItems(LootItem items)
+   {
       for (int i = 0; i < inventorySlots.Length; i++)
       {
-         Debug.Log("me here");
          Slot slot = inventorySlots[i];
          InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
          if (itemInSlot != null && 
-             itemInSlot.item == item && 
+             itemInSlot.item == items.item && 
              itemInSlot.count < maxStackedItems && 
              itemInSlot.item.stackable == true)
          {
-            itemInSlot.count++;
-            itemInSlot.RefreshCount();
-            return true;
+            if (maxStackedItems < itemInSlot.count + items.count)
+            {
+               itemInSlot.count = maxStackedItems;
+               itemInSlot.RefreshCount();
+            }
+            else
+            {
+               itemInSlot.count += items.count;
+               itemInSlot.RefreshCount();
+               return true;
+            }
          }
       }
       
       for (int i = 0; i < inventorySlots.Length; i++)
       {
-         Debug.Log("now me here");
          Slot slot = inventorySlots[i];
          InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
          
          if (itemInSlot == null)
          {
-            SpawnNewItem(item, slot);
+            SpawnNewItem(items, slot);
             return true;
          }
       }
@@ -88,7 +94,6 @@ public class InventoryManager : MonoBehaviour
       {
          itemInSlot.count++;
          itemInSlot.RefreshCount();
-         return;
       }
    }
 
@@ -142,11 +147,6 @@ public class InventoryManager : MonoBehaviour
    {
       Destroy(item.gameObject);
    }
-   
-   public void RemoveItemAfterDragging(InventoryItem item)
-   {
-      Destroy(item.gameObject);
-   }
 
    public void SpawnNewItem(Item item, Slot slot)
    {
@@ -155,9 +155,12 @@ public class InventoryManager : MonoBehaviour
       inventoryItem.InitialiseItem(item);
    }
    
-   public void SpawnNewInventoryItem(InventoryItem item, Slot slot)
+   public void SpawnNewItem(LootItem item, Slot slot)
    {
-      GameObject newItemGo = Instantiate(item.gameObject, slot.transform);
+      GameObject newItemGo = Instantiate(inventoryItemPrefab, slot.transform);
+      InventoryItem inventoryItem = newItemGo.GetComponent<InventoryItem>();
+      inventoryItem.count = item.count;
+      inventoryItem.InitialiseItem(item.item);
    }
-   
+
 }

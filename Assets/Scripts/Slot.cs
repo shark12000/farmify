@@ -11,6 +11,8 @@ public class Slot : MonoBehaviour, IDropHandler
     private void Start()
     {
         Console.WriteLine(image);
+        Image imageComponent = GetComponent<Image>();
+        imageComponent.sprite = image.sprite;
     }
 
     private void Awake()

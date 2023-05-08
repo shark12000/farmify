@@ -34,7 +34,26 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
             }
             else if (this.GetComponent<InventoryItem>() != null)
             {
-                transform.SetParent(slot.transform, false);
+                if (slot.IsEmpty())
+                {
+                    Debug.Log("Before: " +slot.IsEmpty());
+                    transform.SetParent(slot.transform, false);
+                    Debug.Log("After: " +slot.IsEmpty());
+                }
+                else
+                {
+                    InventoryItem draggedInventoryItem = GetComponent<InventoryItem>();
+                    Debug.Log("draggedInventoryItem: " + draggedInventoryItem);
+                    InventoryItem inventoryItemFromSlot = slot.GetComponentInChildren<InventoryItem>();
+                    Debug.Log("inventoryItemFromSlot: " + inventoryItemFromSlot);
+                    if (inventoryItemFromSlot.item.title == draggedInventoryItem.item.title)
+                    {
+                        inventoryItemFromSlot.count++;
+                        Debug.Log(inventoryItemFromSlot.count);
+                        inventoryItemFromSlot.RefreshCount();
+                        Destroy(this.gameObject);
+                    }
+                }
             }
         }
         else

@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Rubbish;
 using ScriptableObjects;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -9,6 +8,7 @@ public class CropManager : MonoBehaviour
 {
     public Tilemap interactableTilemap;
     public Tilemap tempTilemap;
+    private bool isReady = false;
 
     public static CropManager instance;
 
@@ -43,8 +43,8 @@ public class CropManager : MonoBehaviour
 
                     if (crop.timeRemaining <= 0f)
                     {
-                        //tempTilemap.SetTile(localPosition, crop.type.tiles[^1]);
-                        //break;
+                        tempTilemap.SetTile(localPosition, crop.type.tiles[^1]);
+                        isReady = true;
                     }
                     else
                     {
@@ -69,7 +69,7 @@ public class CropManager : MonoBehaviour
     {
         if (crops.TryGetValue(localPosition, out Crop crop))
         {
-            if (crop.timeRemaining <= 0f)
+            if (isReady)
             {
                 StartCoroutine(HarvestAndDropLoot(localPosition, crop.type.Seedtype));
             }
@@ -78,7 +78,7 @@ public class CropManager : MonoBehaviour
 
     private IEnumerator HarvestAndDropLoot(Vector3Int localPosition, TypeOfSeed seedType)
     {
-        yield return new WaitForEndOfFrame(); // Wait until the end of the frame to avoid race conditions with Tilemaps
+        yield return new WaitForEndOfFrame();
 
         bool isLooted = LootManager.instance.DropRandomNumberOfLoot(localPosition, seedType);
 

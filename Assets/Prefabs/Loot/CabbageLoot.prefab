@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4915530565327858930}
   - component: {fileID: -6101114870913322584}
   m_Layer: 0
-  m_Name: Loot
+  m_Name: CabbageLoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,7 +47,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1e2add8a85c2774f95be84b10909b6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sr: {fileID: 4737168159325803065}
   _collider2D: {fileID: 4915530565327858930}
   moveSpeed: 6
   lootItem: {fileID: -6101114870913322584}
@@ -91,8 +90,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
-  m_Sprite: {fileID: -606044414, guid: 18e6ec48cab136d41b38760bbb498ccc, type: 3}
+  m_SortingOrder: 0
+  m_Sprite: {fileID: -1622307347, guid: 18e6ec48cab136d41b38760bbb498ccc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -141,6 +140,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e01556971a748d28e1fef90a1c6c3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: 0133c91c84b1c764a8a9b679c7499716, type: 2}
+  item: {fileID: 11400000, guid: c54a98fcbd8b2ef459f5a6cafe9379b2, type: 2}
   count: 0
-  type: 0
+  type: 4
